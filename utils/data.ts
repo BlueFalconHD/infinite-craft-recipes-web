@@ -1,9 +1,11 @@
 import {promises as fs} from "fs";
 import {CraftingData} from "@/types/crafting";
+import path from "path";
 
 export async function getData() {
     // fetch the item data from cwd/crafting_data.json
-    const response = await fs.readFile(process.cwd() + '/crafting_data.json', 'utf8');
+    const fpath = path.join(process.cwd(), 'crafting_data.json')
+    const response = await fs.readFile(fpath, 'utf8');
     const data: CraftingData = JSON.parse(response);
     return data;
 }
