@@ -2,6 +2,10 @@ import {Item, CraftingData} from "@/types/crafting";
 import ItemComponent from "@/components/ItemComponent";
 import {getData} from "@/utils/data";
 
+export const metadata = {
+    title: 'Infinite Craft Recipes',
+}
+
 export default async function Home() {
     const data: CraftingData = await getData();
     // data.items is an object with keys as item names and values as Item objects
