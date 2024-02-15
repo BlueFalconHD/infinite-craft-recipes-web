@@ -2,11 +2,19 @@ import {promises as fs} from "fs";
 import {CraftingData} from "@/types/crafting";
 import path from "path";
 
+// cached data
+let cdata: CraftingData;
+
 export async function getData() {
-    // fetch the item data from cwd/crafting_data.json
+
+    if (cdata) {
+        return cdata;
+    }
+
     const fpath = path.join(process.cwd(), 'crafting_data.json')
     const response = await fs.readFile(fpath, 'utf8');
     const data: CraftingData = JSON.parse(response);
+    cdata = data;
     return data;
 }
 
